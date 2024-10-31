@@ -12,4 +12,5 @@ and provides actionable feedback to help achieve accurate tuning.
 
 - ## Example Output
 ![image](https://github.com/user-attachments/assets/5f7593d0-05be-41d1-9869-f19fb09d767c)
+![image](https://github.com/user-attachments/assets/96f84ae2-f9d7-4a33-a2aa-da40452886ee)
 ![image](https://github.com/user-attachments/assets/5cd34a7e-94e5-4ae5-a761-dd82b0cd7b34)
