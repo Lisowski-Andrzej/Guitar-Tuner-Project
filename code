@@ -1,0 +1,61 @@
+clear;
+clc;
+close all;
+
+
+[signal,Fs] = audioread("D/Dz.mp3"); % A/Ad Az Az1 Az2 ...
+samples = length(signal);
+x = samples/Fs;
+
+if x < 1
+    x = 1;
+    samples = Fs;
+    for i = 1:(Fs - length(signal))
+        signal(length(signal)+1,:) = 0;
+    end
+end
+
+t = linspace(0, x, samples);
+subplot(2,1,1),plot(t,signal), ylabel('Amplitude'), xlabel('Time (secs)');
+
+f1 = 0:(Fs/samples):(Fs -Fs/samples); 
+
+[Pxx, f] = pwelch(signal, gausswin(Fs), Fs/2, f1/4, Fs);
+subplot(2,1,2), plot(f,Pxx), ylabel('PSD'), xlabel('Frequency (Hz)');
+
+[~, loc] = max(Pxx);
+freq_est = f(loc(1));
+title(['Frequency Estimate = ', num2str(freq_est), 'Hz']);
+
+ktora = input("Which sound? (GBDEA) ","s");
+    switch (ktora)
+        case 'A'
+            czest_wzorcowa = 110; % 
+        case 'E'
+            czest_wzorcowa = 165; % 
+        case 'G'
+            czest_wzorcowa = 196; % 
+        case 'B'
+            czest_wzorcowa = 247; % 
+        case 'D' 
+            czest_wzorcowa = 290; %
+
+
+    end
+
+    roznica = freq_est - czest_wzorcowa;
+    blad = czest_wzorcowa * 0.01;
+
+    if roznica < -blad;
+        czest_wzorcowa
+        freq_est
+        fprintf("Sound is too low\n");
+    elseif difference < error;
+        target_frequency
+        freq_est
+        fprintf("String is tuned correctly\n");
+    else
+        target_frequency
+        freq_est
+        fprintf("Sound is too high\n");
+    end
